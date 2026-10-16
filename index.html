@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divya Jagadeswaran - Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    h1, h2, h3, h4, h5, .font-heading {
+      font-family: 'Sora', sans-serif;
+    }
+    
+    .section-title {
+      font-family: 'Sora', sans-serif;
+      background: linear-gradient(135deg, #3b0764 0%, #4f46e5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.025em;
+    }
+
+    .tab-interactive {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .tab-interactive:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+
+  <script>
+    function showSection(sectionId) {
+      document.querySelectorAll('section.content-section').forEach(section => {
+        section.classList.add('hidden');
+      });
+      document.getElementById(sectionId).classList.remove('hidden');
+    }
+
+    function showAcademicSubTab(tabId, btn) {
+      document.querySelectorAll('.academic-subtab').forEach(tab => {
+        tab.classList.add('hidden');
+      });
+      document.querySelectorAll('.academic-subtab-btn').forEach(b => {
+        b.className = 'academic-subtab-btn tab-interactive bg-white text-gray-700 border-2 border-purple-100 hover:border-purple-300 px-6 py-2.5 rounded-xl font-semibold shadow-sm';
+      });
+      document.getElementById(tabId).classList.remove('hidden');
+      btn.className = 'academic-subtab-btn tab-interactive bg-gradient-to-r from-purple-700 to-indigo-600 text-white px-6 py-2.5 rounded-xl font-bold shadow-lg ring-2 ring-purple-400';
+    }
+
+    function showCertSubTab(tabId, btn) {
+      document.querySelectorAll('.cert-subtab').forEach(tab => {
+        tab.classList.add('hidden');
+      });
+      document.querySelectorAll('.cert-subtab-btn').forEach(b => {
+        b.className = 'cert-subtab-btn tab-interactive bg-white text-gray-700 border-2 border-indigo-100 hover:border-indigo-300 px-6 py-2.5 rounded-xl font-semibold shadow-sm';
+      });
+      document.getElementById(tabId).classList.remove('hidden');
+      btn.className = 'cert-subtab-btn tab-interactive bg-gradient-to-r from-indigo-700 to-purple-600 text-white px-6 py-2.5 rounded-xl font-bold shadow-lg ring-2 ring-indigo-400';
+    }
+
+    function openCertificateModal(imageSrc, title) {
+      const modal = document.getElementById('certModal');
+      const modalImg = document.getElementById('modalImage');
+      const modalTitle = document.getElementById('modalTitle');
+      modalImg.src = imageSrc;
+      modalTitle.innerText = title;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeCertificateModal() {
+      const modal = document.getElementById('certModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      showSection('home');
+    });
+  </script>
+</head>
+
+<body class="bg-slate-50 font-sans text-gray-900 antialiased flex flex-col min-h-screen">
+  <!-- Navigation Bar -->
+  <nav class="bg-gradient-to-r from-purple-900 via-purple-800 to-indigo-900 text-white py-4 shadow-lg sticky top-0 z-50 border-b border-purple-700/50">
+    <div class="container mx-auto px-4 flex justify-between items-center flex-wrap">
+      <h1 class="text-2xl font-extrabold tracking-tight" style="font-family: 'Sora', sans-serif;">Divya's Portfolio</h1>
+
+      <style>
+        .nav-link {
+          padding: 0.5rem 1rem;
+          border: 2px solid transparent;
+          transition: all 0.3s ease;
+          border-radius: 0.5rem;
+        }
+        .nav-link:hover {
+          transform: scale(1.05);
+          background-color: white;
+          color: #6b21a8;
+          border-color: #6b21a8;
+        }
+      </style>
+
+      <ul class="flex space-x-2 md:space-x-6 text-sm md:text-base font-medium">
+        <li><a href="#" onclick="showSection('home')" class="nav-link">Home</a></li>
+        <li><a href="#" onclick="showSection('about')" class="nav-link">About</a></li>
+        <li><a href="#" onclick="showSection('academics'); showAcademicSubTab('roles-tab', document.querySelector('.academic-subtab-btn'));" class="nav-link">Academic Excellence</a></li>
+        <li><a href="#" onclick="showSection('certifications')" class="nav-link">Certifications & Works</a></li>
+        <li><a href="#" onclick="showSection('contact')" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="content-section text-white py-24 min-h-[calc(100vh-80px)] flex flex-col items-center justify-center text-center bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-700 animate-background">
+    <style>
+      @keyframes gradientShift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+      .animate-background {
+        background-size: 200% 200%;
+        animation: gradientShift 10s ease infinite;
+      }
+    </style>
+
+    <div class="w-28 h-28 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-5xl mb-6 shadow-2xl ring-4 ring-white/80 border border-white/20">
+      👩‍🏫
+    </div>
+
+    <h2 class="text-5xl font-extrabold mb-2 tracking-tight" style="font-family: 'Sora', sans-serif;">Divya Jagadeswaran</h2>
+    <p class="text-2xl font-medium text-purple-100 mb-2">Assistant Professor</p>
+
+    <div class="text-lg font-semibold text-purple-100 mb-6 tracking-wide">
+      Inspiring | Mentoring | Innovating
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 mt-4">
+      <a href="#" onclick="showSection('contact')" class="bg-white text-purple-900 px-6 py-2.5 rounded-lg font-bold shadow-md hover:bg-purple-50 transition transform hover:-translate-y-0.5">
+        Contact Me
+      </a>
+      <a href="#" onclick="showSection('academics'); showAcademicSubTab('roles-tab', document.querySelectorAll('.academic-subtab-btn')[1]);" class="bg-purple-950 text-white px-6 py-2.5 rounded-lg font-bold shadow-md hover:bg-purple-900 transition transform hover:-translate-y-0.5">
+        Explore More
+      </a>
+      <a href="https://www.linkedin.com/in/divyajagadeswaran?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" title="Visit my LinkedIn Profile" class="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-bold shadow-md hover:bg-blue-700 transition transform hover:-translate-y-0.5">
+        🔗 LinkedIn
+      </a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="content-section py-24 px-6 min-h-[calc(100vh-80px)] hidden">
+    <style>
+      .about-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .about-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      }
+    </style>
+
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <h3 class="text-4xl font-extrabold section-title">About Me</h3>
+        <p class="text-gray-600 text-lg mt-1">Academic Background, Professional Role, and Teaching Methodology</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Education -->
+        <div class="about-card border-2 border-purple-200 bg-white p-8 rounded-2xl shadow-sm flex flex-col justify-between">
+          <div>
+            <h3 class="text-2xl font-bold text-purple-900 mb-4 border-b border-purple-100 pb-2 flex items-center gap-2" style="font-family: 'Sora', sans-serif;">🎓 Education</h3>
+            <ul class="space-y-4 text-gray-700">
+              <li class="border-l-4 border-purple-600 pl-3">
+                <strong class="block text-lg text-purple-950">MCA (2022–2024)</strong>
+                <span class="text-sm">Sri Balaji Chockalingam Engineering College</span>
+                <span class="block text-xs text-gray-500">Affiliated to Anna University</span>
+              </li>
+              <li class="border-l-4 border-indigo-600 pl-3">
+                <strong class="block text-lg text-indigo-950">BCA (2019–2022)</strong>
+                <span class="text-sm">Arcot Sri Mahaalakshmi Women's College (Autonomous)</span>
+                <span class="block text-xs text-gray-500">Affiliated to Thiruvalluvar University</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- About Profile -->
+        <div class="about-card border-2 border-indigo-200 bg-indigo-50/50 p-8 rounded-2xl shadow-sm flex flex-col justify-between">
+          <div>
+            <h3 class="text-2xl font-bold text-indigo-900 mb-4 border-b border-indigo-200 pb-2 flex items-center gap-2" style="font-family: 'Sora', sans-serif;">👩‍🏫 Professional Profile</h3>
+            <p class="text-base leading-relaxed text-gray-700">
+              I am an <strong>Assistant Professor</strong> in the <strong>Department of Computer Applications</strong>, serving from <strong>September 2024 to Present</strong>. I handle courses for both <strong>Undergraduate (UG)</strong> and <strong>Postgraduate (PG)</strong> students, dedicating myself to academic mentoring, student skill development, and handling departmental administration.
+            </p>
+          </div>
+        </div>
+
+        <!-- Teaching Philosophy & ICT Integration -->
+        <div class="about-card border-2 border-amber-200 bg-amber-50/50 p-8 rounded-2xl shadow-sm flex flex-col justify-between">
+          <div>
+            <h3 class="text-2xl font-bold text-amber-900 mb-4 border-b border-amber-200 pb-2 flex items-center gap-2" style="font-family: 'Sora', sans-serif;">🌟 ICT & Pedagogy</h3>
+            <ul class="space-y-3 text-base text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-amber-600 font-bold">•</span>
+                <span><strong>Hands-on Labs:</strong> Practical programming and code execution support for students.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-amber-600 font-bold">•</span>
+                <span><strong>Smart Class:</strong> Using digital presentations and ICT tools for concept delivery.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-amber-600 font-bold">•</span>
+                <span><strong>Gen AI Assistance:</strong> Leveraging modern tools for efficient lesson planning.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Academics & Teaching Section -->
+  <section id="academics" class="content-section py-20 px-6 min-h-[calc(100vh-80px)] hidden">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-10">
+        <span class="bg-purple-100 text-purple-800 text-sm md:text-base font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider inline-block">Academic Excellence</span>
+        <h3 class="text-4xl font-extrabold section-title mt-3">Teaching & Departmental Leadership</h3>
+        <p class="text-gray-600 text-lg mt-1">Comprehensive Overview of Departmental Roles and Course Execution Flows</p>
+      </div>
+      
+      <div class="flex justify-center space-x-3 mb-10 flex-wrap gap-y-3">
+        <button onclick="showAcademicSubTab('roles-tab', this)" class="academic-subtab-btn tab-interactive bg-gradient-to-r from-purple-700 to-indigo-600 text-white px-6 py-2.5 rounded-xl font-bold shadow-lg ring-2 ring-purple-400">
+          🏛️ Departmental Roles
+        </button>
+        <button onclick="showAcademicSubTab('courses-tab', this)" class="academic-subtab-btn tab-interactive bg-white text-gray-700 border-2 border-purple-100 hover:border-purple-300 px-6 py-2.5 rounded-xl font-semibold shadow-sm">
+          📚 Course Execution Flow & Subjects
+        </button>
+        <button onclick="showAcademicSubTab('skills-tab', this)" class="academic-subtab-btn tab-interactive bg-white text-gray-700 border-2 border-purple-100 hover:border-purple-300 px-6 py-2.5 rounded-xl font-semibold shadow-sm">
+          💻 Technical Competencies
+        </button>
+      </div>
+
+      <!-- Sub-tab 1: Departmental Roles (Grid Layout - Default) -->
+      <div id="roles-tab" class="academic-subtab bg-white p-8 rounded-2xl border-2 border-indigo-100 shadow-md">
+        <h4 class="text-2xl font-bold text-indigo-900 mb-6 pb-2 border-b-2 border-indigo-100 flex items-center gap-2" style="font-family: 'Sora', sans-serif;">
+          🏛️ Key Administrative & Departmental Responsibilities
+        </h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div class="bg-indigo-50/50 p-5 rounded-xl border border-indigo-200 shadow-sm flex gap-4 items-start">
+            <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shrink-0">1</span>
+            <div>
+              <h5 class="text-base font-bold text-indigo-900">NAAC Criteria 4 Support</h5>
+              <p class="text-gray-700 text-sm mt-1">Assisting in organizing, maintaining, and documenting departmental infrastructure and learning resources.</p>
+            </div>
+          </div>
+          <div class="bg-indigo-50/50 p-5 rounded-xl border border-indigo-200 shadow-sm flex gap-4 items-start">
+            <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shrink-0">2</span>
+            <div>
+              <h5 class="text-base font-bold text-indigo-900">AICTE Documentation Support</h5>
+              <p class="text-gray-700 text-sm mt-1">Supporting institutional AICTE requirements by managing document records and portal file updates.</p>
+            </div>
+          </div>
+          <div class="bg-indigo-50/50 p-5 rounded-xl border border-indigo-200 shadow-sm flex gap-4 items-start">
+            <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shrink-0">3</span>
+            <div>
+              <h5 class="text-base font-bold text-indigo-900">Board of Studies (BOS) Support</h5>
+              <p class="text-gray-700 text-sm mt-1">Contributing to BOS meetings, syllabus alignment, and curriculum documentation.</p>
+            </div>
+          </div>
+          <div class="bg-indigo-50/50 p-5 rounded-xl border border-indigo-200 shadow-sm flex gap-4 items-start">
+            <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shrink-0">4</span>
+            <div>
+              <h5 class="text-base font-bold text-indigo-900">Naan Mudhalvan Skill Initiative In-Charge</h5>
+              <p class="text-gray-700 text-sm mt-1">Managing student registrations and coordinating skill-building course activities under the state scheme.</p>
+            </div>
+          </div>
+          <div class="bg-indigo-50/50 p-5 rounded-xl border border-indigo-200 shadow-sm flex gap-4 items-start">
+            <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shrink-0">5</span>
+            <div>
+              <h5 class="text-base font-bold text-indigo-900">COE Cell Assistance</h5>
+              <p class="text-gray-700 text-sm mt-1">Supporting the Controller of Examinations cell in operational exam duties and records management.</p>
+            </div>
+          </div>
+          <div class="bg-indigo-50/50 p-5 rounded-xl border border-indigo-200 shadow-sm flex gap-4 items-start">
+            <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shrink-0">6</span>
+            <div>
+              <h5 class="text-base font-bold text-indigo-900">Class Mentorship & Guidance</h5>
+              <p class="text-gray-700 text-sm mt-1">Serving as Class Tutor for UG and PG batches, monitoring progress and mentoring students.</p>
+            </div>
+          </div>
+          <div class="bg-indigo-50/50 p-5 rounded-xl border border-indigo-200 shadow-sm flex gap-4 items-start">
+            <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shrink-0">7</span>
+            <div>
+              <h5 class="text-base font-bold text-indigo-900">Pudhumai Penn Scheme Support</h5>
+              <p class="text-gray-700 text-sm mt-1">Assisting eligible female students with documentation processes for government scholarship schemes.</p>
+            </div>
+          </div>
+          <div class="bg-indigo-50/50 p-5 rounded-xl border border-indigo-200 shadow-sm flex gap-4 items-start">
+            <span class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shrink-0">8</span>
+            <div>
+              <h5 class="text-base font-bold text-indigo-900">College YouTube Channel Content Creation</h5>
+              <p class="text-gray-700 text-sm mt-1">Assisting in conceptualizing, recording, and editing educational video content and event highlights.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-tab 2: Course Execution Flow & Subjects (Vertical Timeline) -->
+      <div id="courses-tab" class="academic-subtab bg-white p-8 rounded-2xl border-2 border-purple-100 shadow-md hidden">
+        <h4 class="text-2xl font-bold text-purple-900 mb-8 pb-2 border-b-2 border-purple-100 flex items-center gap-2" style="font-family: 'Sora', sans-serif;">
+          📖 Course Execution Flow & Subject Framework
+        </h4>
+        
+        <div class="relative border-l-4 border-purple-500 ml-4 pl-6 space-y-8">
+          
+          <!-- Phase 1 -->
+          <div class="relative">
+            <div class="absolute -left-[35px] top-1 bg-purple-600 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ring-4 ring-white">1</div>
+            <div class="bg-purple-50/60 p-5 rounded-xl border border-purple-200 shadow-sm">
+              <span class="bg-purple-200 text-purple-900 text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Phase 1</span>
+              <h5 class="text-lg font-bold text-purple-950 mt-2">Foundation & Conceptual Building</h5>
+              <p class="text-sm text-gray-700 mt-1">Core logic, syntax setup, structural understanding, ER modeling, and linear data structures.</p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <span class="bg-white px-2.5 py-1 rounded border border-purple-200 text-xs font-semibold text-purple-900">🐍 Python Programming</span>
+                <span class="bg-white px-2.5 py-1 rounded border border-purple-200 text-xs font-semibold text-purple-900">🗄️ DBMS & SQL</span>
+                <span class="bg-white px-2.5 py-1 rounded border border-purple-200 text-xs font-semibold text-purple-900">⚡ Data Structures</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="relative">
+            <div class="absolute -left-[35px] top-1 bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ring-4 ring-white">2</div>
+            <div class="bg-indigo-50/60 p-5 rounded-xl border border-indigo-200 shadow-sm">
+              <span class="bg-indigo-200 text-indigo-900 text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Phase 2</span>
+              <h5 class="text-lg font-bold text-indigo-950 mt-2">Laboratory & Code Execution</h5>
+              <p class="text-sm text-gray-700 mt-1">Hands-on lab sessions, algorithm analysis, live debugging, query optimization, and UI layout design.</p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <span class="bg-white px-2.5 py-1 rounded border border-indigo-200 text-xs font-semibold text-indigo-900">⚡ Algorithm Analysis</span>
+                <span class="bg-white px-2.5 py-1 rounded border border-indigo-200 text-xs font-semibold text-indigo-900">📱 Mobile App UI Layouts</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="relative">
+            <div class="absolute -left-[35px] top-1 bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ring-4 ring-white">3</div>
+            <div class="bg-pink-50/60 p-5 rounded-xl border border-pink-200 shadow-sm">
+              <span class="bg-pink-200 text-pink-900 text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Phase 3</span>
+              <h5 class="text-lg font-bold text-pink-950 mt-2">Advanced Systems & Practical Insights</h5>
+              <p class="text-sm text-gray-700 mt-1">Supervised/unsupervised machine learning models, sensor/actuator integration, and IoT microcontrollers.</p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <span class="bg-white px-2.5 py-1 rounded border border-pink-200 text-xs font-semibold text-pink-900">🤖 Machine Learning Models</span>
+                <span class="bg-white px-2.5 py-1 rounded border border-pink-200 text-xs font-semibold text-pink-900">🌐 IoT Hardware & Protocols</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Sub-tab 3: Technical Competencies -->
+      <div id="skills-tab" class="academic-subtab bg-white p-8 rounded-2xl border-2 border-pink-100 shadow-md hidden">
+        <h4 class="text-2xl font-bold text-purple-900 mb-6 pb-2 border-b-2 border-purple-100 flex items-center gap-2" style="font-family: 'Sora', sans-serif;">
+          💻 Technical Competencies & Expertise Badges
+        </h4>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          <div class="p-4 bg-purple-50/80 border-2 border-purple-200 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-sm">
+            <span class="text-2xl">🤖</span>
+            <div>
+              <div class="font-bold text-purple-950 text-sm">Machine Learning</div>
+              <div class="text-[11px] text-purple-700">AI & Models</div>
+            </div>
+          </div>
+          <div class="p-4 bg-indigo-50/80 border-2 border-indigo-200 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-sm">
+            <span class="text-2xl">🐍</span>
+            <div>
+              <div class="font-bold text-indigo-950 text-sm">Python</div>
+              <div class="text-[11px] text-indigo-700">Labs & Core</div>
+            </div>
+          </div>
+          <div class="p-4 bg-blue-50/80 border-2 border-blue-200 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-sm">
+            <span class="text-2xl">🗄️</span>
+            <div>
+              <div class="font-bold text-blue-950 text-sm">DBMS & SQL</div>
+              <div class="text-[11px] text-blue-700">Relational DB</div>
+            </div>
+          </div>
+          <div class="p-4 bg-amber-50/80 border-2 border-amber-200 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-sm">
+            <span class="text-2xl">☕</span>
+            <div>
+              <div class="font-bold text-amber-950 text-sm">Java</div>
+              <div class="text-[11px] text-amber-700">Programming</div>
+            </div>
+          </div>
+          <div class="p-4 bg-emerald-50/80 border-2 border-emerald-200 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-sm">
+            <span class="text-2xl">🌐</span>
+            <div>
+              <div class="font-bold text-emerald-950 text-sm">Web Tech</div>
+              <div class="text-[11px] text-emerald-700">HTML, CSS, JS</div>
+            </div>
+          </div>
+          <div class="p-4 bg-pink-50/80 border-2 border-pink-200 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-sm">
+            <span class="text-2xl">⚡</span>
+            <div>
+              <div class="font-bold text-pink-950 text-sm">Data Structures</div>
+              <div class="text-[11px] text-pink-700">Algorithms</div>
+            </div>
+          </div>
+          <div class="p-4 bg-sky-50/80 border-2 border-sky-200 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-sm">
+            <span class="text-2xl">📱</span>
+            <div>
+              <div class="font-bold text-sky-950 text-sm">Mobile App Dev</div>
+              <div class="text-[11px] text-sky-700">UI & Logic</div>
+            </div>
+          </div>
+          <div class="p-4 bg-teal-50/80 border-2 border-teal-200 rounded-xl flex items-center gap-3 hover:scale-105 transition shadow-sm">
+            <span class="text-2xl">📡</span>
+            <div>
+              <div class="font-bold text-teal-950 text-sm">IoT Systems</div>
+              <div class="text-[11px] text-teal-700">Hardware & Labs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Certifications & Works Section -->
+  <section id="certifications" class="content-section py-20 px-6 min-h-[calc(100vh-80px)] hidden">
+    <div class="max-w-6xl mx-auto space-y-8">
+      
+      <div class="text-center">
+        <span class="bg-indigo-100 text-indigo-800 text-sm md:text-base font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider inline-block">Continuous Learning</span>
+        <h3 class="text-4xl font-extrabold section-title mt-3">Certifications & Professional Works</h3>
+        <p class="text-gray-600 text-lg">Verified Credentials, Faculty Development Programs, and Project Mentorship</p>
+      </div>
+
+      <div class="flex justify-center space-x-3 mb-8 flex-wrap gap-y-3">
+        <button onclick="showCertSubTab('tech-cert-tab', this)" class="cert-subtab-btn tab-interactive bg-gradient-to-r from-indigo-700 to-purple-600 text-white px-6 py-2.5 rounded-xl font-bold shadow-lg ring-2 ring-indigo-400">
+          📜 Technical Certifications
+        </button>
+        <button onclick="showCertSubTab('fdp-tab', this)" class="cert-subtab-btn tab-interactive bg-white text-gray-700 border-2 border-indigo-100 hover:border-indigo-300 px-6 py-2.5 rounded-xl font-semibold shadow-sm">
+          🎓 Faculty Development Programs (FDPs)
+        </button>
+        <button onclick="showCertSubTab('mentorship-tab', this)" class="cert-subtab-btn tab-interactive bg-white text-gray-700 border-2 border-indigo-100 hover:border-indigo-300 px-6 py-2.5 rounded-xl font-semibold shadow-sm">
+          💡 Project Mentorship
+        </button>
+      </div>
+
+      <!-- Tab 1: Technical Certifications -->
+      <div id="tech-cert-tab" class="cert-subtab bg-white p-8 rounded-2xl border-2 border-purple-100 shadow-md">
+        <h4 class="text-2xl font-bold text-purple-900 mb-6 pb-2 border-b-2 border-purple-100 flex items-center gap-2" style="font-family: 'Sora', sans-serif;">
+          📜 Industry & Technical Certifications
+        </h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div class="bg-red-50/40 border-2 border-red-200 p-6 rounded-xl shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <h5 class="text-xl font-bold text-red-900 mb-2">☕ Java Programming</h5>
+              <p class="text-gray-700 mb-4">Technical Certification in Java Development</p>
+            </div>
+            <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1mbP7IxUeFK3XUS7sgld613vKJJXo2MsW', 'Java Programming')" class="w-full text-xs bg-red-600 text-white py-2 rounded-lg font-bold hover:bg-red-700 transition">
+              👁️ View Proof
+            </button>
+          </div>
+
+          <div class="bg-yellow-50/40 border-2 border-yellow-200 p-6 rounded-xl shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <h5 class="text-xl font-bold text-yellow-900 mb-2">🐘 Hadoop</h5>
+              <p class="text-gray-700 mb-4">Big Data Architecture & Hadoop Ecosystem</p>
+            </div>
+            <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1IHrigRP5g4LQCDr5xv11vKddEwLcBQHu', 'Hadoop Certification')" class="w-full text-xs bg-yellow-600 text-white py-2 rounded-lg font-bold hover:bg-yellow-700 transition">
+              👁️ View Proof
+            </button>
+          </div>
+
+          <div class="bg-emerald-50/40 border-2 border-emerald-200 p-6 rounded-xl shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <h5 class="text-xl font-bold text-emerald-900 mb-2">🤖 Prompt Engineering</h5>
+              <p class="text-gray-700 mb-4">Generative AI Models & Prompt Design</p>
+            </div>
+            <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1aQcJQKIMJ8UcC6P4rvvAM0cjlIMfoBjh', 'Prompt Engineering')" class="w-full text-xs bg-emerald-600 text-white py-2 rounded-lg font-bold hover:bg-emerald-700 transition">
+              👁️ View Proof
+            </button>
+          </div>
+
+          <div class="bg-blue-50/40 border-2 border-blue-200 p-6 rounded-xl shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <h5 class="text-xl font-bold text-blue-900 mb-2">🛠️ Technical Support</h5>
+              <p class="text-gray-700 mb-4">System Support & IT Infrastructure Essentials</p>
+            </div>
+            <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1h4kwCUs_iLmXS8-w9LXHiKRiz8e7UOOo', 'Technical Support Certification')" class="w-full text-xs bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-700 transition">
+              👁️ View Proof
+            </button>
+          </div>
+
+          <div class="bg-indigo-50/40 border-2 border-indigo-200 p-6 rounded-xl shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <h5 class="text-xl font-bold text-indigo-900 mb-2">🌐 Web Development Fundamentals</h5>
+              <p class="text-gray-700">Issued by <strong>IBM SkillsBuild</strong></p>
+              <p class="text-xs text-gray-500 mt-2 mb-4">Issued: Jun 20, 2025</p>
+            </div>
+            <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1hpO5igHE5R_V1y3S3Qwhk7LNvFgEim-j', 'Web Development Fundamentals - IBM')" class="w-full text-xs bg-indigo-600 text-white py-2 rounded-lg font-bold hover:bg-indigo-700 transition">
+              👁️ View Proof
+            </button>
+          </div>
+
+          <div class="bg-sky-50/40 border-2 border-sky-200 p-6 rounded-xl shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <h5 class="text-xl font-bold text-sky-900 mb-2">☁️ Cloud Computing (12 Weeks)</h5>
+              <p class="text-gray-700">Organized by <strong>NPTEL-AICTE</strong></p>
+              <p class="text-xs text-gray-500 mt-2 mb-4">Jul–Oct 2025 | Score: 58%</p>
+            </div>
+            <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1gofHLOk7PGy0SIvc2yHLxAAqkT2S9VWs', 'Cloud Computing - NPTEL')" class="w-full text-xs bg-sky-600 text-white py-2 rounded-lg font-bold hover:bg-sky-700 transition">
+              👁️ View Proof
+            </button>
+          </div>
+
+          <div class="bg-amber-50/40 border-2 border-amber-200 p-6 rounded-xl shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <h5 class="text-xl font-bold text-amber-900 mb-2">💻 Webinar on Hakeem</h5>
+              <p class="text-gray-700 mb-4">Webinar & Technical Seminar Participation</p>
+            </div>
+            <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1AHnY6GQXAUmE5NnIe53aXS5_BpVnogxw', 'Webinar on Hakeem')" class="w-full text-xs bg-amber-600 text-white py-2 rounded-lg font-bold hover:bg-amber-700 transition">
+              👁️ View Proof
+            </button>
+          </div>
+
+          <div class="bg-purple-50/40 border-2 border-purple-200 p-6 rounded-xl shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <h5 class="text-xl font-bold text-purple-900 mb-2">🚀 Naan Mudhalvan Skill FDP</h5>
+              <p class="text-gray-700 mb-4">Under Tamil Nadu Skill Development Mission</p>
+            </div>
+            <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/10py39B9__FSqU9-rsxtKupu2BHWyoBb3', 'Naan Mudhalvan FDP')" class="w-full text-xs bg-purple-600 text-white py-2 rounded-lg font-bold hover:bg-purple-700 transition">
+              👁️ View Proof
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tab 2: Faculty Development Programs -->
+      <div id="fdp-tab" class="cert-subtab bg-white p-8 rounded-2xl border-2 border-indigo-100 shadow-md hidden">
+        <h4 class="text-2xl font-bold text-indigo-900 mb-6 pb-2 border-b-2 border-indigo-100 flex items-center gap-2" style="font-family: 'Sora', sans-serif;">
+          🎓 Faculty Development Programs (FDPs) & Workshops
+        </h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          <div class="bg-indigo-50/50 p-6 rounded-xl border-l-4 border-indigo-600 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="bg-indigo-200 text-indigo-900 text-xs font-bold px-2.5 py-0.5 rounded-full">Emerging Tech</span>
+              <h5 class="font-bold text-indigo-900 text-lg mt-2">Next Generation Wireless Communication 5G to 6G</h5>
+              <p class="text-sm text-gray-700 mt-1">Professional Academic Training Initiative</p>
+              <p class="text-xs text-indigo-700 font-bold mt-2">🗓️ 12th August 2026</p>
+            </div>
+            <div class="mt-4">
+              <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1VgBZfI4_ZqAo5GzJxwZvWcz-J1tJtJWC', 'Next Gen Wireless FDP')" class="w-full text-xs bg-indigo-700 text-white py-2 rounded-lg font-bold hover:bg-indigo-800 transition">
+                👁️ View Proof
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50/50 p-6 rounded-xl border-l-4 border-indigo-600 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="bg-purple-200 text-purple-900 text-xs font-bold px-2.5 py-0.5 rounded-full">Gen AI & AI Tools</span>
+              <h5 class="font-bold text-indigo-900 text-lg mt-2">Empowering Academics with AI tools</h5>
+              <p class="text-sm text-gray-700 mt-1">Professional Academic Training Initiative</p>
+              <p class="text-xs text-indigo-700 font-bold mt-2">🗓️ 10th August, 2026 to 15th August, 2026</p>
+            </div>
+            <div class="mt-4">
+              <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1_qym5iNqYZSR86utS8JGY9f_PsowIwYg', 'AI Tools in Academics FDP')" class="w-full text-xs bg-indigo-700 text-white py-2 rounded-lg font-bold hover:bg-indigo-800 transition">
+                👁️ View Proof
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50/50 p-6 rounded-xl border-l-4 border-indigo-600 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="bg-emerald-200 text-emerald-900 text-xs font-bold px-2.5 py-0.5 rounded-full">Research & Ethics</span>
+              <h5 class="font-bold text-indigo-900 text-lg mt-2">Effective Research Methodology, Paper Writing & Publication Ethics</h5>
+              <p class="text-sm text-gray-700 mt-1">Organized by <strong>Department of CSE, Sri Indu Institute of Engineering & Tech</strong></p>
+              <p class="text-xs text-indigo-700 font-bold mt-2">🗓️ July 22, 2026</p>
+            </div>
+            <div class="mt-4">
+              <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1bpmZMqmkIvpXDGuszL4a_oO8fTnbuku4', 'Research Methodology FDP - Sri Indu')" class="w-full text-xs bg-indigo-700 text-white py-2 rounded-lg font-bold hover:bg-indigo-800 transition">
+                👁️ View Proof
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50/50 p-6 rounded-xl border-l-4 border-indigo-600 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="bg-blue-200 text-blue-900 text-xs font-bold px-2.5 py-0.5 rounded-full">Smart Systems</span>
+              <h5 class="font-bold text-indigo-900 text-lg mt-2">Emerging AI Paradigms for Smart Cities and Next-Gen Industries</h5>
+              <p class="text-sm text-gray-700 mt-1">Organized by <strong>Department of CSE, Arunai Engineering College</strong></p>
+              <p class="text-xs text-indigo-700 font-bold mt-2">🗓️ Jan 05, 2026 – Jan 10, 2026</p>
+            </div>
+            <div class="mt-4">
+              <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1sv4ZzjzXepF--0K_-SxN5JmsZPi4_Uf0', 'Emerging AI Paradigms FDP - Arunai')" class="w-full text-xs bg-indigo-700 text-white py-2 rounded-lg font-bold hover:bg-indigo-800 transition">
+                👁️ View Proof
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50/50 p-6 rounded-xl border-l-4 border-indigo-600 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="bg-purple-200 text-purple-900 text-xs font-bold px-2.5 py-0.5 rounded-full">Gen AI & AI Tools</span>
+              <h5 class="font-bold text-indigo-900 text-lg mt-2">Teaching and Learning using Generative AI</h5>
+              <p class="text-sm text-gray-700 mt-1">Organized by <strong>Govt Arts & Science College</strong></p>
+              <p class="text-xs text-indigo-700 font-bold mt-2">🗓️ Sept 23, 2025</p>
+            </div>
+            <div class="mt-4">
+              <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1hqobvD7NX4WAS559tnQp832VVkH_AIvX', 'Teaching & Learning using Gen AI - Govt Arts')" class="w-full text-xs bg-indigo-700 text-white py-2 rounded-lg font-bold hover:bg-indigo-800 transition">
+                👁️ View Proof
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50/50 p-6 rounded-xl border-l-4 border-indigo-600 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="bg-purple-200 text-purple-900 text-xs font-bold px-2.5 py-0.5 rounded-full">Gen AI & AI Tools</span>
+              <h5 class="font-bold text-indigo-900 text-lg mt-2">Advancing with Agentic AI & Prompt Engineering</h5>
+              <p class="text-sm text-gray-700 mt-1">Organized by <strong>Department of AIML, Sri Sairam College of Engineering</strong></p>
+              <p class="text-xs text-indigo-700 font-bold mt-2">🗓️ Sept 15, 2025 – Sept 19, 2025</p>
+            </div>
+            <div class="mt-4">
+              <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1HKW3g6zrXZvEdNjRu_buSzSmDVzKhgxc', 'Agentic AI & Prompt Engineering FDP - Sri Sairam')" class="w-full text-xs bg-indigo-700 text-white py-2 rounded-lg font-bold hover:bg-indigo-800 transition">
+                👁️ View Proof
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50/50 p-6 rounded-xl border-l-4 border-indigo-600 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="bg-amber-200 text-amber-900 text-xs font-bold px-2.5 py-0.5 rounded-full">Hardware & Vision</span>
+              <h5 class="font-bold text-indigo-900 text-lg mt-2">Recent Trends on AI - Text, Vision & Hardware Implementation Models</h5>
+              <p class="text-sm text-gray-700 mt-1">Organized by <strong>Department of ECE, Panimalar Engineering College</strong></p>
+              <p class="text-xs text-indigo-700 font-bold mt-2">🗓️ Aug 28, 2025 – Sept 02, 2025</p>
+            </div>
+            <div class="mt-4">
+              <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1JtJqg1mt0Diy8ECouVD69TwTvXZzexdX', 'Recent Trends on AI FDP - Panimalar')" class="w-full text-xs bg-indigo-700 text-white py-2 rounded-lg font-bold hover:bg-indigo-800 transition">
+                👁️ View Proof
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50/50 p-6 rounded-xl border-l-4 border-indigo-600 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="bg-sky-200 text-sky-900 text-xs font-bold px-2.5 py-0.5 rounded-full">Explainable AI</span>
+              <h5 class="font-bold text-indigo-900 text-lg mt-2">RareExplain: Explainable AI for Rare Event Detection</h5>
+              <p class="text-sm text-gray-700 mt-1">Organized by <strong>Vinayaka Mission's Kirupananda Variyar Engg College</strong></p>
+              <p class="text-xs text-indigo-700 font-bold mt-2">🗓️ Aug 20, 2025</p>
+            </div>
+            <div class="mt-4">
+              <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1oNA46YB6mLxCFCtwmwkpkCV6k-ET19VP', 'Explainable AI FDP - Vinayaka Mission')" class="w-full text-xs bg-indigo-700 text-white py-2 rounded-lg font-bold hover:bg-indigo-800 transition">
+                👁️ View Proof
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50/50 p-6 rounded-xl border-l-4 border-indigo-600 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="bg-teal-200 text-teal-900 text-xs font-bold px-2.5 py-0.5 rounded-full">Healthcare Tech</span>
+              <h5 class="font-bold text-indigo-900 text-lg mt-2">Recent Trends in Embedded Systems and IoT in Health Care Sectors</h5>
+              <p class="text-sm text-gray-700 mt-1">Organized by <strong>Department of BME, Dhaanish Ahmed Institute of Technology</strong></p>
+              <p class="text-xs text-indigo-700 font-bold mt-2">🗓️ July 28, 2025 – Aug 01, 2025</p>
+            </div>
+            <div class="mt-4">
+              <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1yw9g6QKd0DkYnSjEsmijTblxY-U43V9v', 'Embedded Systems & IoT FDP - DAIT')" class="w-full text-xs bg-indigo-700 text-white py-2 rounded-lg font-bold hover:bg-indigo-800 transition">
+                👁️ View Proof
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50/50 p-6 rounded-xl border-l-4 border-indigo-600 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="bg-pink-200 text-pink-900 text-xs font-bold px-2.5 py-0.5 rounded-full">IPR & Policy</span>
+              <h5 class="font-bold text-indigo-900 text-lg mt-2">Intellectual Property Rights (IPR) & IP Management</h5>
+              <p class="text-sm text-gray-700 mt-1">Organized by <strong>Department of BA, SRM Institute of Science & Tech</strong></p>
+              <p class="text-xs text-indigo-700 font-bold mt-2">🗓️ Nov 09, 2024</p>
+            </div>
+            <div class="mt-4">
+              <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1TVt7ki7v4j6TCejpBecjLSdI7xg1ZSc6', 'IPR & IP Management FDP - SRM')" class="w-full text-xs bg-indigo-700 text-white py-2 rounded-lg font-bold hover:bg-indigo-800 transition">
+                👁️ View Proof
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-indigo-50/50 p-6 rounded-xl border-l-4 border-indigo-600 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="bg-gray-200 text-gray-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Academic FDP</span>
+              <h5 class="font-bold text-indigo-900 text-lg mt-2">Faculty Development Program / Technical Workshop</h5>
+              <p class="text-sm text-gray-700 mt-1">Organized by <strong>SKP Engineering College</strong></p>
+              <p class="text-xs text-indigo-700 font-bold mt-2">🗓️ SKP Academic FDP</p>
+            </div>
+            <div class="mt-4">
+              <button onclick="openCertificateModal('https://lh3.googleusercontent.com/d/1FgZVrpctLQWSV0pRTagxQqe3Wo-JuHBJ', 'SKP FDP Certificate')" class="w-full text-xs bg-indigo-700 text-white py-2 rounded-lg font-bold hover:bg-indigo-800 transition">
+                👁️ View Proof
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tab 3: Mentorship -->
+      <div id="mentorship-tab" class="cert-subtab bg-white p-8 rounded-2xl border-2 border-indigo-100 shadow-md hidden">
+        <h4 class="text-2xl font-bold text-purple-900 mb-6 pb-2 border-b-2 border-purple-100 flex items-center gap-2" style="font-family: 'Sora', sans-serif;">
+          💡 Academic Project Guidance & Mentorship
+        </h4>
+        <div class="bg-pink-50/50 p-6 rounded-xl border border-pink-100 space-y-3">
+          <p class="text-gray-700 text-lg leading-relaxed">
+            Serving as an <strong>Academic Project Guide</strong> for both Undergraduate (UG) and Postgraduate (PG) students. Supervised multiple mini and major academic projects in key domains including Machine Learning, Database Systems, Python Applications, Web Applications, and Data Structures.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="content-section py-20 px-6 min-h-[calc(100vh-80px)] hidden">
+    <div class="max-w-2xl mx-auto bg-gradient-to-b from-amber-50 to-orange-50 p-8 rounded-2xl shadow-md border border-amber-200 space-y-6">
+      <h3 class="text-4xl font-extrabold text-amber-900 text-center mb-6" style="font-family: 'Sora', sans-serif;">Get in Touch</h3>
+
+      <!-- Welcome Note -->
+      <div class="bg-white/80 p-4 rounded-xl border border-amber-200 text-center">
+        <p class="text-sm font-medium text-amber-900">💬 "I am always open to academic collaborations, knowledge sharing, and professional interactions. Feel free to leave a message!"</p>
+      </div>
+
+      <div class="text-center bg-white p-5 rounded-xl border border-amber-200 shadow-sm">
+        <p class="text-lg font-bold mb-3 text-gray-800">Looking for my detailed Curriculum Vitae?</p>
+        <a href="https://drive.google.com/file/d/1l1PqtBHy5iXNG15jkmTPoIgM5j-EMsWr/view?usp=drive_link" target="_blank" class="inline-block bg-emerald-600 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-emerald-700 transition shadow-sm">
+          ⬇️ Download Resume
+        </a>
+      </div>
+
+      <form action="https://formsubmit.co/divyaassistantprofessor@gmail.com" method="POST" class="space-y-4">
+        <input type="hidden" name="_subject" value="New Website Contact Form Submission">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <div>
+          <label class="block text-lg font-semibold mb-1 text-gray-800">Name</label>
+          <input type="text" name="name" class="w-full px-4 py-2.5 border border-amber-300 rounded-lg focus:ring-2 focus:ring-purple-600 outline-none bg-white" placeholder="Your Name" required>
+        </div>
+        <div>
+          <label class="block text-lg font-semibold mb-1 text-gray-800">Email</label>
+          <input type="email" name="email" class="w-full px-4 py-2.5 border border-amber-300 rounded-lg focus:ring-2 focus:ring-purple-600 outline-none bg-white" placeholder="Your Email" required>
+        </div>
+        <div>
+          <label class="block text-lg font-semibold mb-1 text-gray-800">Message</label>
+          <textarea name="message" class="w-full px-4 py-2.5 border border-amber-300 rounded-lg focus:ring-2 focus:ring-purple-600 outline-none bg-white" rows="5" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="bg-purple-900 text-white px-6 py-3 rounded-lg hover:bg-purple-800 w-full font-bold shadow-md transition cursor-pointer">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Certificate Modal -->
+  <div id="certModal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-3xl w-full p-6 relative flex flex-col items-center">
+      <button onclick="closeCertificateModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-900 text-2xl font-bold">&times;</button>
+      <h3 id="modalTitle" class="text-2xl font-bold text-purple-900 mb-4" style="font-family: 'Sora', sans-serif;">Certificate Preview</h3>
+      <img id="modalImage" src="" alt="Certificate" class="max-h-[70vh] rounded-lg object-contain shadow-md">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-purple-950 text-white text-center py-4 text-sm mt-auto">
+    <p>&copy; 2026 Divya Jagadeswaran. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
